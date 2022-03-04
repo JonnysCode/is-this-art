@@ -17,12 +17,18 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
+
+const {
+  ALCHEMY_RINKEBY_URL,
+  PRIVATE_KEY
+} = process.env;
+
 module.exports = {
   solidity: "0.8.4",
   networks: {
     rinkeby: {
-      url: process.env.ALCHEMY_RINKEBY_URL,
-      accounts: [process.env.ACCOUNT_PRIVATE_KEY],
+      url: ALCHEMY_RINKEBY_URL,
+      accounts: [PRIVATE_KEY],
     }
   }
 };
