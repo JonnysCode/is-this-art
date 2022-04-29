@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
+import { renderToString } from 'react-dom/server'
 import { nftContractAddress } from '../config.js'
 import { ethers } from 'ethers'
 import axios from 'axios'
 
 import NFT from '../utils/jnft.json'
+import Art from './art.js'
+import ArtGenerator from './art_generator.js'
 
 const mint = () => {
 	const [mintedNFT, setMintedNFT] = useState(null)
@@ -80,6 +83,12 @@ const mint = () => {
 		checkCorrectNetwork()
 	}, [])
 
+	const showSVG = () => {
+		let svg = renderToString(<ArtGenerator />)
+		console.log(svg)
+	}
+
+
 	// Creates transaction to mint NFT on clicking Mint Character button
 	const mintCharacter = async () => {
 		try {
@@ -97,8 +106,9 @@ const mint = () => {
 				
 				//let svg = "<svg viewBox='0 0 350 350' xmlns='http://www.w3.org/2000/svg' ><style>.base { fill: white; font-family: serif; font-size: 24px; }</style><circle cx='175' cy='175' r='175' width='100%' height='100%' fill='black'></circle><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>Token #"
 
-				let svg = "name of the NFT"
-				let nftTx = await nftContract.createknft(svg)
+				let svg = renderToString(<ArtGenerator />)
+
+				let nftTx = await nftContract.createknft(svg, "Emotions", "Jonny")
 				console.log('Mining....', nftTx.hash)
 				setMiningStatus(0)
 
@@ -153,24 +163,31 @@ const mint = () => {
 		}
 	}
 
+
 	return (
 		<div className='flex flex-col items-center pt-32 bg-[#f3f6f4] text-[#6a50aa] min-h-screen'>
 			<div className='trasition hover:rotate-180 hover:scale-105 transition duration-500 ease-in-out'>
 			</div>
+
+			<div>
+				<Art />
+			</div>
+
 			<h2 className='text-3xl font-bold mb-20 mt-12'>
 				Mint your NFT!
 			</h2>
+
 			{currentAccount === '' ? (
 				<button
 				className='text-2xl font-bold py-3 px-12 bg-[#f1c232] rounded-lg mb-10 hover:scale-105 transition duration-500 ease-in-out'
-				onClick={connectWallet}
+				onClick={ connectWallet }
 				>
 				Connect Wallet
 				</button>
 				) : correctNetwork ? (
 				<button
 				className='text-2xl font-bold py-3 px-12 bg-[#f1c232] rounded-lg mb-10 hover:scale-105 transition duration-500 ease-in-out'
-				onClick={mintCharacter}
+				onClick={ mintCharacter }
 				>
 				Mint
 				</button>
@@ -182,6 +199,7 @@ const mint = () => {
 				<div>----------------------------------------</div>
 				</div>
 			)}
+
 			<div className='text-xl font-semibold mb-20 mt-4'>
 				<a
 					href={`https://rinkeby.rarible.com/collection/${nftContractAddress}`}

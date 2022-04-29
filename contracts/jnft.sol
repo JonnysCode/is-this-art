@@ -13,23 +13,22 @@ contract jnft is ERC721URIStorage {
     string public collectionName;
     string public collectionSymbol;
 
-    constructor() ERC721("jNFT", "jNFT") {
+    constructor() ERC721("What Is Art?", "WIART") {
         collectionName = name();
         collectionSymbol = symbol();
     }
 
-    function createknft(string memory _svg) public returns (uint256) {
+    function createknft(string memory _svg, string memory _answer , string memory _name) public returns (uint256) {
         uint256 newItemId = _tokenId.current();
-
+        /*
         // "<svg viewBox='0 0 350 350' xmlns='http://www.w3.org/2000/svg' ><style>.base { fill: white; font-family: serif; font-size: 24px; }</style><circle cx='175' cy='175' r='175' width='100%' height='100%' fill='black'></circle><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>Token #";
         string
             memory baseSvg = "<svg viewBox='0 0 350 350' xmlns='http://www.w3.org/2000/svg' ><style>.base { fill: white; font-family: serif; font-size: 24px; }</style><circle cx='175' cy='175' r='175' width='100%' height='100%' fill='black'></circle><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>Token #";
 
+        */
         string memory finalSvg = string(
             abi.encodePacked(
-                baseSvg,
-                Strings.toString(newItemId),
-                "</text></svg>"
+                _svg
             )
         );
 
@@ -37,9 +36,9 @@ contract jnft is ERC721URIStorage {
             bytes(
                 string(
                     abi.encodePacked(
-                        '{"name": "',
-                        _svg,
-                        '", "description": "Is this art?", "image": "data:image/svg+xml;base64,',
+                        '{"name": "Art is ',
+                        _answer,
+                        '", "description": "by ', _name, '", "image": "data:image/svg+xml;base64,',
                         Base64.encode(bytes(finalSvg)),
                         '"}'
                     )
