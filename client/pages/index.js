@@ -107,6 +107,7 @@ const mint = () => {
 				//let svg = "<svg viewBox='0 0 350 350' xmlns='http://www.w3.org/2000/svg' ><style>.base { fill: white; font-family: serif; font-size: 24px; }</style><circle cx='175' cy='175' r='175' width='100%' height='100%' fill='black'></circle><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>Token #"
 
 				let svg = renderToString(<ArtGenerator />)
+				console.log(svg)
 
 				let nftTx = await nftContract.createknft(svg, "Emotions", "Jonny")
 				console.log('Mining....', nftTx.hash)
@@ -169,13 +170,13 @@ const mint = () => {
 			<div className='trasition hover:rotate-180 hover:scale-105 transition duration-500 ease-in-out'>
 			</div>
 
+			<h2 className='text-4xl font-bold mb-20 mt-12'>
+				What is Art for You?
+			</h2>
+
 			<div>
 				<Art />
 			</div>
-
-			<h2 className='text-3xl font-bold mb-20 mt-12'>
-				Mint your NFT!
-			</h2>
 
 			{currentAccount === '' ? (
 				<button

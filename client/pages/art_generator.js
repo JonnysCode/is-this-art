@@ -81,6 +81,10 @@ function RGBtoString(rgb) {
   return "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ", 0.9)"
 }
 
+function RGBAtoString(rgb) {
+  return "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + rgb[3] + ")"
+}
+
 function interpolate(startColor, endColor, factor) {
   let rgb = [];
   for (let i = 0; i < 3; i++) {
@@ -108,9 +112,12 @@ const ArtGenerator = (props) => {
   const padding = 24
   const nrLines = 8
 
-  const bgColor = RGBtoString([0, 0, 0])
+  const bgColor = RGBAtoString([0, 0, 0, 1.0])
+  const textColor = RGBAtoString([255, 255, 255, 0.8])
   const startColor = startingColor()
   const endColor = endingColor(startColor)
+
+  const textLength = size - 2 * padding
 
   let xValues = []
   let yValues = []
@@ -155,6 +162,10 @@ const ArtGenerator = (props) => {
               x2={line.x2} y2={line.y2} 
               style={{ stroke: line.color, strokeWidth: line.width }} /> 
       )}
+      <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" fill={textColor} 
+            textLength={textLength} fontFamily="Verdana" fontSize="36" fontWeight="bold">
+        TEXT
+      </text> 
     </svg>
   )
 }
