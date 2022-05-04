@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { renderToString } from 'react-dom/server'
 import { RefreshIcon } from '@heroicons/react/solid'
 
 import ArtGenerator from './ArtGenerator.js'

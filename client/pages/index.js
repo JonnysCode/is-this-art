@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react'
-import { renderToString } from 'react-dom/server'
 import { nftContractAddress } from '../config.js'
 import { ethers } from 'ethers'
 import axios from 'axios'
 
 import NFT from '../utils/jnft.json'
-import Art from './Art.js'
-import ArtGenerator from './ArtGenerator.js'
+import Art from './art.js'
 
 const mint = () => {
 	const [mintedNFT, setMintedNFT] = useState(null)
