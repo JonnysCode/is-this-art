@@ -89,14 +89,20 @@ const mint = () => {
 
 	const getAnswer = () => {
 		let element = document.getElementById('answer').value
+		element = capitalizeFirstLetters(element)
 		console.log(element)
 		return element
 	}
 
 	const getName = () => {
 		let element = document.getElementById('name').value
+		element = capitalizeFirstLetters(element)
 		console.log(element)
 		return element
+	}
+
+	const capitalizeFirstLetters = (sentence) => {
+		return sentence.trim().toLowerCase().replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())));
 	}
 
 	const showSVG = () => {
