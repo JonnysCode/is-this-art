@@ -1,7 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 const Struct = (...keys) => ((...v) => keys.reduce((o, k, i) => {o[k] = v[i]; return o} , {}))
+const Line = Struct('id', 'x1', 'y1', 'x2', 'y2', 'color', 'width')
+
+const size = 256
+const padding = 24
+const nrLines = 8
+
+const bgColor = RGBAtoString([0, 0, 0, 1.0])
+const textColor = RGBAtoString([255, 255, 255, 0.8])
+
+const textLength = size - 2 * padding
 
 Array.prototype.random = function () {
   return this[Math.floor((Math.random()*this.length))];
@@ -12,7 +22,7 @@ function randomPoint(imgSize, padding) {
 }
 
 function startingColor() {
-  return HSVtoRGB(0.1, [0.6, 0.8, 1, 1].random(), [1, 1, 0.9, 0.8].random());
+  return HSVtoRGB(Math.random(), [0.6, 0.8, 1, 1].random(), [1, 1, 0.9, 0.8].random());
 }
 
 function endingColor(startColor) {
@@ -78,7 +88,7 @@ function RGBtoHSV(r, g, b) {
 }
 
 function RGBtoString(rgb) {
-  return "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ", 0.9)"
+  return "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ", 0.85)"
 }
 
 function RGBAtoString(rgb) {
@@ -93,31 +103,10 @@ function interpolate(startColor, endColor, factor) {
   return rgb;
 }
 
-function generateArt(ref, answer) {
-  
-}
+function generateArt(answer) {
 
-
-const ArtGenerator = (props) => {
-  const [value, setValue] = useState();
-
-  const refresh = ()=>{
-    // re-renders the component
-    setValue({});
-  }
-
-  const Line = Struct('id', 'x1', 'y1', 'x2', 'y2', 'color', 'width')
-
-  const size = 256
-  const padding = 24
-  const nrLines = 8
-
-  const bgColor = RGBAtoString([0, 0, 0, 1.0])
-  const textColor = RGBAtoString([255, 255, 255, 0.8])
   const startColor = startingColor()
   const endColor = endingColor(startColor)
-
-  const textLength = size - 2 * padding
 
   let xValues = []
   let yValues = []
@@ -151,21 +140,53 @@ const ArtGenerator = (props) => {
     )
   }
 
-  // TODO: Center image, Text, 
+  const svgState = {
+    size: size,
+    bgColor: bgColor,
+    answer: answer, 
+    textColor: RGBAtoString([...startColor, 0.8]),
+    textLength: textLength,
+    lines: lines,
+  }
+
+  return svgState
+}
+
+
+const ArtGenerator = (props) => {
+  const [svgState, setSvgState] = useState({
+    size: size,
+    bgColor: bgColor,
+    answer: "", 
+    textColor: textColor,
+    textLength: textLength,
+    lines: [],
+  });
+
+  useEffect(() => {
+    let state = generateArt(props.answer);
+    setSvgState(state);
+  }, []);
+
+  console.log(svgState.lines)
 
   return (
-    <svg height={size} width={size} xmlns='http://www.w3.org/2000/svg' >
-      <rect width={size} height={size} style={{fill: bgColor}} />
-      {lines.map((line) => 
+    <svg height={svgState.size} width={svgState.size} xmlns='http://www.w3.org/2000/svg' >
+
+      <rect width={svgState.size} height={svgState.size} style={{fill: svgState.bgColor}} />
+
+      <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" fill={svgState.textColor} 
+            fontFamily="Verdana" fontSize="36" fontWeight="bold">
+        {svgState.answer}
+      </text> 
+
+      {svgState.lines.map((line) => 
         <line key={line.id} 
               x1={line.x1} y1={line.y1} 
               x2={line.x2} y2={line.y2} 
               style={{ stroke: line.color, strokeWidth: line.width }} /> 
       )}
-      <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" fill={textColor} 
-            textLength={textLength} fontFamily="Verdana" fontSize="36" fontWeight="bold">
-        TEXT
-      </text> 
+
     </svg>
   )
 }

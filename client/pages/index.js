@@ -5,8 +5,8 @@ import { ethers } from 'ethers'
 import axios from 'axios'
 
 import NFT from '../utils/jnft.json'
-import Art from './art.js'
-import ArtGenerator from './art_generator.js'
+import Art from './Art.js'
+import ArtGenerator from './ArtGenerator.js'
 
 const mint = () => {
 	const [mintedNFT, setMintedNFT] = useState(null)
@@ -83,9 +83,28 @@ const mint = () => {
 		checkCorrectNetwork()
 	}, [])
 
+	const getSVG = () => {
+		let element = document.getElementById('div').innerHTML
+		console.log(element)
+		return element
+	}
+
+	const getAnswer = () => {
+		let element = document.getElementById('answer').value
+		console.log(element)
+		return element
+	}
+
+	const getName = () => {
+		let element = document.getElementById('name').value
+		console.log(element)
+		return element
+	}
+
 	const showSVG = () => {
-		let svg = renderToString(<ArtGenerator />)
-		console.log(svg)
+		let svg = getSVG()
+		let answer = getAnswer()
+		let name = getName()
 	}
 
 
@@ -104,12 +123,11 @@ const mint = () => {
 				)
 
 				
-				//let svg = "<svg viewBox='0 0 350 350' xmlns='http://www.w3.org/2000/svg' ><style>.base { fill: white; font-family: serif; font-size: 24px; }</style><circle cx='175' cy='175' r='175' width='100%' height='100%' fill='black'></circle><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>Token #"
+				let svg = getSVG()
+				let answer = getAnswer()
+				let name = getName()
 
-				let svg = renderToString(<ArtGenerator />)
-				console.log(svg)
-
-				let nftTx = await nftContract.createknft(svg, "Emotions", "Jonny")
+				let nftTx = await nftContract.createknft(svg, answer, name)
 				console.log('Mining....', nftTx.hash)
 				setMiningStatus(0)
 
@@ -166,11 +184,11 @@ const mint = () => {
 
 
 	return (
-		<div className='flex flex-col items-center pt-32 bg-[#f3f6f4] text-[#6a50aa] min-h-screen'>
+		<div className='flex flex-col items-center pt-5 bg-[#f3f6f4] text-[#6a50aa] min-h-screen'>
 			<div className='trasition hover:rotate-180 hover:scale-105 transition duration-500 ease-in-out'>
 			</div>
 
-			<h2 className='text-4xl font-bold mb-20 mt-12'>
+			<h2 className='text-4xl font-bold mb-5 mt-5'>
 				What is Art for You?
 			</h2>
 
@@ -214,7 +232,7 @@ const mint = () => {
 			{loadingState === 0 ? (
 				miningStatus === 0 ? (
 					txError === null ? (
-						<div className='flex flex-col justify-center items-center'>
+						<div className='flex flex-col justify-center items-center mb-60'>
 							<div className='text-lg font-bold'>
 								Processing your transaction
 							</div>
@@ -234,7 +252,7 @@ const mint = () => {
 					<img
 						src={mintedNFT}
 						alt=''
-						className='h-60 w-60 rounded-lg shadow-2xl shadow-[#6FFFE9] hover:scale-105 transition duration-500 ease-in-out'
+						className='mb-60 h-60 w-60 rounded-lg shadow-2xl shadow-[#6FFFE9] hover:scale-105 transition duration-500 ease-in-out'
 					/>
 				</div>
 			)}
