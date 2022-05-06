@@ -23,6 +23,14 @@ module.exports = {
     rinkeby: {
       url: process.env.ALCHEMY_RINKEBY_URL,
       accounts: [process.env.ACCOUNT_PRIVATE_KEY],
+    },
+    mumbai: {
+      url: process.env.ALCHEMY_MUMBAI_URL,
+      accounts: [process.env.ACCOUNT_PRIVATE_KEY],
+    },
+    polygon: {
+      url: process.env.ALCHEMY_POLYGON_URL,
+      accounts: [process.env.ACCOUNT_PRIVATE_KEY],
     }
   }
 };

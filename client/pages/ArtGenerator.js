@@ -148,7 +148,6 @@ function generateArt(answer) {
     textLength: textLength,
     lines: lines,
   }
-
   return svgState
 }
 
@@ -167,8 +166,6 @@ const ArtGenerator = (props) => {
     let state = generateArt(props.answer);
     setSvgState(state);
   }, []);
-
-  console.log(svgState.lines)
 
   return (
     <svg height={svgState.size} width={svgState.size} xmlns='http://www.w3.org/2000/svg' >

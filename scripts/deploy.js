@@ -1,6 +1,7 @@
 
 const main = async() => {
     const nftContractFactory = await ethers.getContractFactory('jnft')
+    console.log("Deploying contract factory...")
     const nftContract = await nftContractFactory.deploy()
     await nftContract.deployed()
     console.log("Contract deployed to: ", nftContract.address)

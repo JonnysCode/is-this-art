@@ -46,9 +46,17 @@ const mint = () => {
 			console.log('Connected to chain:' + chainId)
 
 			const rinkebyChainId = '0x4'
+			const mumbaiChainId = '0x13881'
+			const polygonChainId = '0x89'
 
+			/*
 			if (chainId !== rinkebyChainId) {
 				alert('You are not connected to the Rinkeby Testnet!')
+				return
+			} */
+
+			if (chainId !== polygonChainId) {
+				alert('You are not connected to the Polygon Mainnet!')
 				return
 			}
 
@@ -68,8 +76,10 @@ const mint = () => {
 		console.log('Connected to chain:' + chainId)
 
 		const rinkebyChainId = '0x4'
+		const mumbaiChainId = '0x13881'
+		const polygonChainId = '0x89'
 
-		if (chainId !== rinkebyChainId) {
+		if (chainId !== polygonChainId) {
 			setCorrectNetwork(false)
 		} else {
 			setCorrectNetwork(true)
@@ -217,13 +227,16 @@ const mint = () => {
 				) : (
 				<div className='flex flex-col justify-center items-center mb-20 font-bold text-2xl gap-y-3'>
 				<div>----------------------------------------</div>
-				<div>Please connect to the Rinkeby Testnet</div>
+				<div>Please connect to the Polygon Mainnet</div>
 				<div>and reload the page</div>
 				<div>----------------------------------------</div>
 				</div>
 			)}
 
 			<div className='text-xl font-semibold mb-20 mt-4'>
+				{
+					// https://testnets.opensea.io/collection/what-is-art
+				}
 				<a
 					href={`https://rinkeby.rarible.com/collection/${nftContractAddress}`}
 					target='_blank'
@@ -256,7 +269,7 @@ const mint = () => {
 					<img
 						src={mintedNFT}
 						alt=''
-						className='mb-60 h-60 w-60 rounded-lg shadow-2xl shadow-[#6FFFE9] hover:scale-105 transition duration-500 ease-in-out'
+						className='mb-60 h-60 w-60 rounded-lg shadow-2xl shadow-[#6a50aa] hover:scale-105 transition duration-500 ease-in-out'
 					/>
 				</div>
 			)}
