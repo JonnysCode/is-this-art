@@ -238,11 +238,12 @@ const mint = () => {
 					// https://testnets.opensea.io/collection/what-is-art
 				}
 				<a
-					href={`https://rinkeby.rarible.com/collection/${nftContractAddress}`}
+					//href={`https://rinkeby.rarible.com/collection/${nftContractAddress}`}
+					href={`https://opensea.io/collection/what-is-art-v4`}
 					target='_blank'
 				>
 					<span className='hover:underline hover:underline-offset-8 '>
-						View Collection on Rarible
+						View Collection on OpenSea
 					</span>
 				</a>
 			</div>
