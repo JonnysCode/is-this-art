@@ -212,20 +212,28 @@ const mint = () => {
 
 			{currentAccount === '' ? (
 				<button
-				className='text-2xl font-bold py-3 px-12 bg-[#f1c232] rounded-lg mb-10 hover:scale-105 transition duration-500 ease-in-out'
-				onClick={ connectWallet }
+					className='text-2xl font-bold py-3 px-12 bg-[#f1c232] rounded-lg mb-10 hover:scale-105 transition duration-500 ease-in-out'
+					onClick={ connectWallet }
 				>
-				Connect Wallet
+					Connect Wallet
 				</button>
 				) : correctNetwork ? (
 				<button
-				className='text-2xl font-bold py-3 px-12 bg-[#f1c232] rounded-lg mb-10 hover:scale-105 transition duration-500 ease-in-out'
-				onClick={ mintCharacter }
+					className='text-2xl font-bold py-3 px-12 bg-[#f1c232] rounded-lg mb-10 hover:scale-105 transition duration-500 ease-in-out'
+					onClick={ mintCharacter }
 				>
-				Mint
+					Mint
 				</button>
 				) : (
 				<div className='flex flex-col justify-center items-center mb-20 font-bold text-2xl gap-y-3'>
+				
+				<button
+					className='text-2xl font-bold py-3 px-12 bg-[#f1c232] rounded-lg mb-10 hover:scale-105 transition duration-500 ease-in-out'
+					onClick={ connectWallet }
+				>
+					Connect Wallet
+				</button>
+				
 				<div>----------------------------------------</div>
 				<div>Please connect to the Polygon Mainnet</div>
 				<div>and reload the page</div>
