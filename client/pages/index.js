@@ -229,14 +229,22 @@ const mint = () => {
 				
 				<button
 					className='text-2xl font-bold py-3 px-12 bg-[#f1c232] rounded-lg mb-10 hover:scale-105 transition duration-500 ease-in-out'
+					onClick={ mintCharacter }
+				>
+					Mint
+				</button>
+
+
+				<button
+					className='text-2xl font-bold py-3 px-12 bg-[#f1c232] rounded-lg mb-10 hover:scale-105 transition duration-500 ease-in-out'
 					onClick={ connectWallet }
 				>
 					Connect Wallet
 				</button>
 				
 				<div>----------------------------------------</div>
-				<div>Please connect to the Polygon Mainnet</div>
-				<div>and reload the page</div>
+				<div>We encountered some issues try to connect </div>
+				<div>the wallet and mint an NFT</div>
 				<div>----------------------------------------</div>
 				</div>
 			)}
