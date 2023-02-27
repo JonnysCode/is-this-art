@@ -1,15 +1,7 @@
-# Basic Sample Hardhat Project
+<img width="225" alt="title" src="https://user-images.githubusercontent.com/63511216/221553532-03f4c845-5ab2-4935-9935-712b38d57337.png">
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+<a href="https://www.example.com/" target="_blank"><img src="https://img.shields.io/badge/Visit%20Website-Click%20Here-blue?style=flat-square" alt="Visit Website"></a>
 
-Try running some of the following tasks:
+Simple generative NFT project that lets you create SVG-images based on input, random parameters, and predefined factors and stores it fully on the blockchain.
 
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
-```
+
